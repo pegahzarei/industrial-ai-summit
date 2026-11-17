@@ -93,17 +93,13 @@
     const data = {}; for (const [k, v] of new FormData(f).entries()) data[k] = data[k] ? data[k] + '; ' + v : v;
     const err = $('.fm-err', f) || $('.fm-err', f.parentElement), say = msg => { if (err) { err.textContent = msg; err.hidden = false; } };
     if (err) err.hidden = true;
-    const hs = S.hubspot || {}, guid = hs.forms && hs.forms[f.dataset.form];
-    if (!hs.portal || !guid) { say(T('Requests are not connected yet. Please write to {m}.').replace('{m}', S.contact || 'summit@intuigence.ai')); return; }
-    /* HubSpot takes standard contact fields; everything else travels in the message */
-    const [fn, ...ln] = (data.name || '').trim().split(/\s+/), std = { email: data.email, firstname: data.first || fn || '', lastname: data.last || ln.join(' '), company: data.company, jobtitle: data.title };
-    const rest = Object.entries(data).filter(([k]) => !['email', 'first', 'last', 'name', 'company', 'title'].includes(k)).map(([k, v]) => `${k}: ${v}`).join('\n');
-    const fields = Object.entries(std).filter(([, v]) => v).map(([name, value]) => ({ objectTypeId: '0-1', name, value }));
-    if (rest) fields.push({ objectTypeId: '0-1', name: 'message', value: `${f.dataset.form}\n${rest}` });
+    const fid = S.formspree;
+    if (!fid) { say(T('Requests are not connected yet. Please write to {m}.').replace('{m}', S.contact || 'summit@intuigence.ai')); return; }
+    /* one Formspree form takes every request; the kind of request travels with it */
     const btn = $('button[type=submit]', f), label0 = btn.textContent; btn.disabled = true; btn.textContent = T('Sending');
     let ok = false;
-    try { const r = await fetch(`https://api.hsforms.com/submissions/v3/integration/submit/${hs.portal}/${guid}`, { method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ fields, context: { pageUri: location.href, pageName: document.title } }) }); ok = r.ok; } catch (x) { ok = false; }
+    try { const r = await fetch(`https://formspree.io/f/${fid}`, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({ request: f.dataset.form, ...data, page: location.href, _subject: `Summit request: ${f.dataset.form}` }) }); ok = r.ok; } catch (x) { ok = false; }
     btn.disabled = false; btn.textContent = label0;
     if (!ok) { say(T('We could not send this. Please try again, or write to {m}.').replace('{m}', S.contact || 'summit@intuigence.ai')); return; }
     const done = $('#' + f.dataset.done);
