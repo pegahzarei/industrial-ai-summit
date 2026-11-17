@@ -124,7 +124,9 @@
     prev.addEventListener('click', () => { if (i) show(i - 1); });
     wz.addEventListener('change', e => { const st = steps[i], inp = e.target; st.classList.remove('need');
       const box = inp.closest('.wz-opts'); if (box && box.dataset.max && $$('input:checked', box).length > +box.dataset.max) inp.checked = false;
-      if (st.dataset.kind === 'one' && i < steps.length - 1) setTimeout(() => { if (steps[i] === st) show(i + 1); }, RM ? 0 : 340); });
+      /* one answer moves on at once; "up to two" moves on once the second is ticked */
+      const full = box && box.dataset.max && inp.checked && $$('input:checked', box).length === +box.dataset.max;
+      if ((st.dataset.kind === 'one' || full) && i < steps.length - 1) setTimeout(() => { if (steps[i] === st) show(i + 1); }, RM ? 0 : (full ? 480 : 340)); });
     addEventListener('keydown', e => { const st = steps[i]; if (!st || st.hidden || st.dataset.kind === 'fields' || e.metaKey || e.ctrlKey || e.altKey || !/^[a-f]$/i.test(e.key) || /INPUT|TEXTAREA/.test(document.activeElement?.tagName) && document.activeElement.type !== 'radio' && document.activeElement.type !== 'checkbox') return;
       const opt = $$('.opt input', st)[e.key.toLowerCase().charCodeAt(0) - 97]; if (opt) { opt.click(); } });
     wz.addEventListener('keydown', e => { if (e.key !== 'Enter') return; e.preventDefault(); if (i < steps.length - 1) next.click(); else if (valid(steps[i])) wz.requestSubmit(); });

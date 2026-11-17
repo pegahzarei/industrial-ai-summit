@@ -1430,3 +1430,13 @@ body.home main { padding-top: 0; }
 .nav .brand { font-size: 17px; gap: 13px; }
 .nav .brand img { width: 34px; height: 34px; }
 @media (max-width: 900px) { .nav .brand { font-size: 15px; gap: 11px; } .nav .brand img { width: 30px; height: 30px; } }
+
+/* the request is done: one short note, sitting evenly in the card */
+.wz-done .wz-q { margin-top: 0; }
+
+/* Houston talks: the speakers in colour, orange numbers and open buttons */
+.tk-who img { filter: none; mix-blend-mode: normal; }
+.tk-n { color: var(--o); }
+.tk-more summary::after { color: var(--o); border-color: rgba(255, 79, 23, .45); transition: transform .4s var(--ease), background .3s var(--ease), color .3s var(--ease); }
+.tk-more summary:hover::after, .tk-more[open] summary::after { background: var(--o); border-color: var(--o); color: #fff; }
+.tk-q { border-left-color: var(--o); }
