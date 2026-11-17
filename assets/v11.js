@@ -221,11 +221,11 @@
   let dataP = null;
   const loadData = () => dataP || (dataP = (async () => {
     while (!window.d3 || !window.topojson) await new Promise(r => setTimeout(r, 60));
-    const [t, s] = await Promise.all([fetch('/industrial-ai-summit/assets/land-110m.json').then(r => r.json()), fetch('/industrial-ai-summit/assets/sites.json').then(r => r.json()).catch(() => [])]);
+    const [t, s] = await Promise.all([fetch('/assets/land-110m.json').then(r => r.json()), fetch('/assets/sites.json').then(r => r.json()).catch(() => [])]);
     return { land: topojson.feature(t, t.objects.land), sites: s };
   })());
   let fineP = null;
-  const loadFine = () => fineP || (fineP = (async () => { while (!window.d3 || !window.topojson) await new Promise(r => setTimeout(r, 60)); const t = await fetch('/industrial-ai-summit/assets/land-50m.json').then(r => r.json()); return topojson.feature(t, t.objects.land); })());
+  const loadFine = () => fineP || (fineP = (async () => { while (!window.d3 || !window.topojson) await new Promise(r => setTimeout(r, 60)); const t = await fetch('/assets/land-50m.json').then(r => r.json()); return topojson.feature(t, t.objects.land); })());
 
   /* ---------------- a location: the land around one city as a dot field, its industry lit, the city marked */
   $$('canvas.locmap').forEach(async cv => {
@@ -313,7 +313,7 @@
     const phone = !wide(); R = phone ? Math.min(W * .42, 190) : Math.min(H * .43, W * .27); CX = phone ? W * .5 : W * .8; CY = phone ? H - 270 : H * .54; };
   size(); addEventListener('resize', size);
 
-  const ZMAX = 1.7, LOGO = new Image(); LOGO.src = '/industrial-ai-summit/assets/mark.svg';
+  const ZMAX = 1.7, LOGO = new Image(); LOGO.src = '/assets/mark.svg';
   let yaw = -75 * D2R, pitch = 24 * D2R, Z = 1, vy = 0, vp = 0, layer = 'cities', layerT = 0, focus = -1, hover = -1, arriveT = 0, dragAt = -1e9;
   let tYaw = yaw, tPitch = pitch;
   const P3 = (cl, sl, lon, lift = 1) => { const a = lon + yaw, xs = cl * Math.sin(a), z = cl * Math.cos(a), cp = Math.cos(pitch), sp = Math.sin(pitch), y2 = sl * cp - z * sp, z2 = sl * sp + z * cp, r = R * Z * lift; return [CX + r * xs, CY - r * y2, z2]; };
@@ -471,7 +471,7 @@
 
   const showTip = i => { if (!tip) return; if (i < 0) { tip.classList.remove('show'); return; } const c = CITIES[i];
     if (tip.dataset.i !== String(i)) { tip.dataset.i = i; const img = $('img', tip), ph = $('.gt-ph', tip);
-      if (c.ph) { img.src = '/industrial-ai-summit/assets/img/photos/' + c.ph; img.style.display = ''; ph.classList.remove('nx'); } else { img.style.display = 'none'; ph.classList.add('nx'); }
+      if (c.ph) { img.src = '/assets/img/photos/' + c.ph; img.style.display = ''; ph.classList.remove('nx'); } else { img.style.display = 'none'; ph.classList.add('nx'); }
       $('b', tip).textContent = c.city; $('.gt-d', tip).textContent = c.date; $('.gt-a', tip).textContent = T(c.cta || 'Read the record'); tip.href = c.href; }
     tip.hidden = false; tip.classList.add('show'); };
   let dragging = false, lx = 0, ly = 0, moved = 0, hideT = 0, overTip = false;
