@@ -1440,3 +1440,8 @@ body.home main { padding-top: 0; }
 .tk-more summary::after { color: var(--o); border-color: rgba(255, 79, 23, .45); transition: transform .4s var(--ease), background .3s var(--ease), color .3s var(--ease); }
 .tk-more summary:hover::after, .tk-more[open] summary::after { background: var(--o); border-color: var(--o); color: #fff; }
 .tk-q { border-left-color: var(--o); }
+
+/* phones and tablets: the opening panel's fade-in left it unpainted, so it shows at once */
+@media (max-width: 900px), (hover: none) { .globe-panel { animation: none; opacity: 1; } }
+/* phones: no scroll tour, so the opening section is only as tall as its panel */
+@media (max-width: 900px) { .story, .story.landing { height: auto; } }
