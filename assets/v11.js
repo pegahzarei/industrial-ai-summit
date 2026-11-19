@@ -276,20 +276,20 @@
       if (wave > 0) { x.strokeStyle = `rgba(255,255,255,${(.12 * (1 - wave / (Math.hypot(W, H) * .7))).toFixed(3)})`; x.lineWidth = 1; x.beginPath(); x.arc(C[0], C[1], wave, 0, Math.PI * 2); x.stroke(); }
       (cv._hubs || []).forEach((h, hi) => { const on = hi === hot, mxx = (C[0] + h.x) / 2, myy = (C[1] + h.y) / 2 - Math.hypot(h.x - C[0], h.y - C[1]) * .18;
         x.beginPath(); x.moveTo(C[0], C[1]); x.quadraticCurveTo(mxx, myy, h.x, h.y);
-        x.lineWidth = on ? 1.5 : 1; x.strokeStyle = on ? 'rgba(255,96,48,.75)' : 'rgba(255,255,255,.14)'; x.stroke();
-        { const N2 = 40, gap = 34, off = RM ? 0 : (T * 22) % gap; let acc = 0, prev = [C[0], C[1]]; x.lineWidth = on ? 1.4 : 1.1; x.strokeStyle = on ? 'rgba(255,170,130,.95)' : 'rgba(255,150,110,.6)';
+        x.lineWidth = on ? 1.5 : 1; x.strokeStyle = on ? 'rgba(232,255,82,.75)' : 'rgba(255,255,255,.14)'; x.stroke();
+        { const N2 = 40, gap = 34, off = RM ? 0 : (T * 22) % gap; let acc = 0, prev = [C[0], C[1]]; x.lineWidth = on ? 1.4 : 1.1; x.strokeStyle = on ? 'rgba(240,255,150,.95)' : 'rgba(236,255,130,.6)';
           for (let k = 1; k <= N2; k++) { const t = k / N2, qx = (1 - t) * (1 - t) * C[0] + 2 * (1 - t) * t * mxx + t * t * h.x, qy = (1 - t) * (1 - t) * C[1] + 2 * (1 - t) * t * myy + t * t * h.y, dx = qx - prev[0], dy = qy - prev[1], L = Math.hypot(dx, dy);
             let u = (gap - ((acc - off) % gap + gap) % gap); while (u <= L && L) { const px = prev[0] + dx * u / L, py = prev[1] + dy * u / L, ux = dx / L, uy = dy / L, s = 4;
               if (Math.hypot(px - C[0], py - C[1]) > 18 && Math.hypot(px - h.x, py - h.y) > 14) { x.beginPath(); x.moveTo(px - ux * s - uy * s * .7, py - uy * s + ux * s * .7); x.lineTo(px, py); x.lineTo(px - ux * s + uy * s * .7, py - uy * s - ux * s * .7); x.stroke(); }
               u += gap; } acc += L; prev = [qx, qy]; } }
-        if (on) { const g = x.createRadialGradient(h.x, h.y, 0, h.x, h.y, 22); g.addColorStop(0, 'rgba(255,96,40,.45)'); g.addColorStop(1, 'rgba(255,79,23,0)'); x.fillStyle = g; x.beginPath(); x.arc(h.x, h.y, 22, 0, Math.PI * 2); x.fill(); }
-        x.strokeStyle = on ? '#ff4f17' : 'rgba(255,255,255,.85)'; x.fillStyle = on ? '#ff4f17' : 'rgba(10,12,16,.9)'; x.lineWidth = 1.3; x.beginPath(); x.arc(h.x, h.y, on ? 4.2 : 3.4, 0, Math.PI * 2); x.fill(); x.stroke();
+        if (on) { const g = x.createRadialGradient(h.x, h.y, 0, h.x, h.y, 22); g.addColorStop(0, 'rgba(232,255,82,.45)'); g.addColorStop(1, 'rgba(226,255,31,0)'); x.fillStyle = g; x.beginPath(); x.arc(h.x, h.y, 22, 0, Math.PI * 2); x.fill(); }
+        x.strokeStyle = on ? '#E2FF1F' : 'rgba(255,255,255,.85)'; x.fillStyle = on ? '#E2FF1F' : 'rgba(10,12,16,.9)'; x.lineWidth = 1.3; x.beginPath(); x.arc(h.x, h.y, on ? 4.2 : 3.4, 0, Math.PI * 2); x.fill(); x.stroke();
         if (W < 600) return;
         x.font = '400 12.5px Switzer, Helvetica, Arial, sans-serif'; const tw = x.measureText(h.n).width, flip = h.x + 10 + tw + 56 > W - 24, tx = flip ? h.x - 10 : h.x + 10;
         x.textAlign = flip ? 'right' : 'left'; x.shadowColor = '#0a0c10'; x.shadowBlur = 8; x.fillStyle = on ? '#fff' : 'rgba(255,255,255,.82)'; x.fillText(h.n, tx, h.y + 4);
-        x.font = '400 11.5px Switzer, Helvetica, Arial, sans-serif'; x.fillStyle = on ? '#ff9a70' : 'rgba(255,255,255,.58)'; x.fillText(h.km + ' km', flip ? tx - tw - 8 : tx + tw + 8, h.y + 4); x.shadowBlur = 0; x.textAlign = 'left'; });
-      const k = (T * .5) % 1; x.strokeStyle = `rgba(255,79,23,${((1 - k) * .7).toFixed(3)})`; x.beginPath(); x.arc(C[0], C[1], 6 + k * 26, 0, Math.PI * 2); x.stroke();
-      x.fillStyle = '#ff4f17'; x.beginPath(); x.arc(C[0], C[1], 5, 0, Math.PI * 2); x.fill();
+        x.font = '400 11.5px Switzer, Helvetica, Arial, sans-serif'; x.fillStyle = on ? '#EEFF8A' : 'rgba(255,255,255,.58)'; x.fillText(h.km + ' km', flip ? tx - tw - 8 : tx + tw + 8, h.y + 4); x.shadowBlur = 0; x.textAlign = 'left'; });
+      const k = (T * .5) % 1; x.strokeStyle = `rgba(226,255,31,${((1 - k) * .7).toFixed(3)})`; x.beginPath(); x.arc(C[0], C[1], 6 + k * 26, 0, Math.PI * 2); x.stroke();
+      x.fillStyle = '#E2FF1F'; x.beginPath(); x.arc(C[0], C[1], 5, 0, Math.PI * 2); x.fill();
       if (cv.dataset.name) { x.font = '400 13px Switzer, Helvetica, Arial, sans-serif'; x.fillStyle = 'rgba(255,255,255,.9)'; x.shadowColor = '#0a0c10'; x.shadowBlur = 8; x.fillText(cv.dataset.name, C[0] + 14, C[1] + 4.5); x.shadowBlur = 0; }
     };
     requestAnimationFrame(draw);
@@ -313,7 +313,7 @@
     const phone = !wide(); R = phone ? Math.min(W * .42, 190) : Math.min(H * .43, W * .27); CX = phone ? W * .5 : W * .8; CY = phone ? H - 270 : H * .54; };
   size(); addEventListener('resize', size);
 
-  const ZMAX = 1.7, LOGO = new Image(); LOGO.src = '/assets/mark.svg';
+  const ZMAX = 1.7, LOGO = new Image(); LOGO.src = '/assets/mark-sm.svg';
   let yaw = -75 * D2R, pitch = 24 * D2R, Z = 1, vy = 0, vp = 0, layer = 'cities', layerT = 0, focus = -1, hover = -1, arriveT = 0, dragAt = -1e9;
   let tYaw = yaw, tPitch = pitch;
   const P3 = (cl, sl, lon, lift = 1) => { const a = lon + yaw, xs = cl * Math.sin(a), z = cl * Math.cos(a), cp = Math.cos(pitch), sp = Math.sin(pitch), y2 = sl * cp - z * sp, z2 = sl * sp + z * cp, r = R * Z * lift; return [CX + r * xs, CY - r * y2, z2]; };
@@ -360,7 +360,7 @@
     anim = { y0: yaw, p0: pitch, z0: Z, y1: ty, p1: tp, z1: ZMAX, dip: Math.min(ZMAX - 1, far * .5), s: performance.now(), ms: RM ? 1 : ms };
     arriveT = performance.now() + (RM ? 0 : ms * .65);
     $$('.ch').forEach(ch => ch.classList.toggle('on', +ch.dataset.city === i));
-    $$('.steps li').forEach((li, k) => { li.classList.toggle('on', k === i); li.classList.toggle('done', k < i); if (!wide()) { const s = $('button', li).style; k === i ? s.setProperty('--fill', '100%') : s.removeProperty('--fill'); } });
+    $$('.steps li').forEach((li, k) => { li.classList.toggle('on', k === i); li.classList.toggle('done', k < i); const s = $('button', li).style; k === i ? s.setProperty('--fill', wide() ? '0%' : '100%') : s.removeProperty('--fill'); });
     setHud(i);
   };
   const ease = k => k < .5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
@@ -410,7 +410,7 @@
       const k = Math.min(2, ((.5 + .5 * Math.sin(Tt * 1.4 + sites[i + 3] * 40)) * 3) | 0), s2 = 1.8;
       tw[k].rect(X - s2 / 2, Y - s2 / 2, s2, s2);
     }
-    tw.forEach((pp, k) => { x.fillStyle = `rgba(255,120,72,${(.34 + k * .08).toFixed(3)})`; x.fill(pp); });
+    tw.forEach((pp, k) => { x.fillStyle = `rgba(234,255,96,${(.34 + k * .08).toFixed(3)})`; x.fill(pp); });
     /* the series: each arc drawn once, then light keeps flowing along it toward the next city */
     x.save(); x.beginPath(); x.arc(CX, CY, RZ * 1.25, 0, Math.PI * 2); x.clip();
     arcs.forEach((pts, ai) => {
@@ -420,15 +420,15 @@
       x.lineCap = 'round';
       runs.forEach(run => { if (run.length < 2) return;
         x.beginPath(); run.forEach((p, k) => k ? x.lineTo(p[0], p[1]) : x.moveTo(p[0], p[1]));
-        x.setLineDash(next ? [2, 5] : []); x.lineWidth = touch ? 1.1 : .8; x.strokeStyle = `rgba(255,110,64,${(.36 * strength).toFixed(3)})`; x.stroke();
+        x.setLineDash(next ? [2, 5] : []); x.lineWidth = touch ? 1.1 : .8; x.strokeStyle = `rgba(232,255,90,${(.36 * strength).toFixed(3)})`; x.stroke();
       });
       x.setLineDash([]);
       if (prog >= 1 && !RM) { /* a bright head travels the arc, trailing light */
         const cyc = (Tt * .16 + ai * .27) % 1, k0 = Math.floor(cyc * (pts.length - 1));
         for (let t = 0; t < 22; t++) { const k = k0 - t; if (k < 0) break; const q = pts[k], p = P3(q[0], q[1], q[2], q[3]); if (p[2] < .05) break;
           const al = (1 - t / 22) * strength * .85, r = t ? 1.1 * (1 - t / 22) + .4 : 2.4;
-          if (!t) { const g = x.createRadialGradient(p[0], p[1], 0, p[0], p[1], r * 2); g.addColorStop(0, `rgba(255,220,200,${al})`); g.addColorStop(.4, `rgba(255,110,60,${(al * .6).toFixed(3)})`); g.addColorStop(1, 'rgba(255,79,23,0)'); x.fillStyle = g; x.beginPath(); x.arc(p[0], p[1], r * 2, 0, Math.PI * 2); x.fill(); }
-          else { x.fillStyle = `rgba(255,130,80,${(al * .7).toFixed(3)})`; x.beginPath(); x.arc(p[0], p[1], r, 0, Math.PI * 2); x.fill(); } }
+          if (!t) { const g = x.createRadialGradient(p[0], p[1], 0, p[0], p[1], r * 2); g.addColorStop(0, `rgba(248,255,214,${al})`); g.addColorStop(.4, `rgba(232,255,90,${(al * .6).toFixed(3)})`); g.addColorStop(1, 'rgba(226,255,31,0)'); x.fillStyle = g; x.beginPath(); x.arc(p[0], p[1], r * 2, 0, Math.PI * 2); x.fill(); }
+          else { x.fillStyle = `rgba(236,255,110,${(al * .7).toFixed(3)})`; x.beginPath(); x.arc(p[0], p[1], r, 0, Math.PI * 2); x.fill(); } }
       }
     });
     x.restore();
@@ -438,16 +438,16 @@
     CITIES.forEach((c, i) => {
       const p = cityP(c); if (p[2] <= .12) return;
       const on = i === focus, hv = i === hover, al = Math.min(1, (p[2] - .12) / .2) * (p[1] > H - 90 && !on ? 0 : 1); if (al <= .01) return;
-      const glow = x.createRadialGradient(p[0], p[1], 0, p[0], p[1], 12); glow.addColorStop(0, `rgba(255,96,40,${((on || hv ? .3 : .2) * al).toFixed(3)})`); glow.addColorStop(1, 'rgba(255,79,23,0)');
+      const glow = x.createRadialGradient(p[0], p[1], 0, p[0], p[1], 12); glow.addColorStop(0, `rgba(232,255,82,${((on || hv ? .3 : .2) * al).toFixed(3)})`); glow.addColorStop(1, 'rgba(226,255,31,0)');
       x.fillStyle = glow; x.beginPath(); x.arc(p[0], p[1], 12, 0, Math.PI * 2); x.fill();
-      for (let r = 0; r < 1; r++) { const k = ((Tt / 3.6 + i * .2) % 1); x.strokeStyle = `rgba(255,110,64,${((1 - k) * (on ? .45 : .3) * al).toFixed(3)})`; x.lineWidth = .8; x.beginPath(); x.arc(p[0], p[1], (on ? 16 : 4) + k * (on ? 20 : 10), 0, Math.PI * 2); x.stroke(); }
+      for (let r = 0; r < 1; r++) { const k = ((Tt / 3.6 + i * .2) % 1); x.strokeStyle = `rgba(232,255,90,${((1 - k) * (on ? .45 : .3) * al).toFixed(3)})`; x.lineWidth = .8; x.beginPath(); x.arc(p[0], p[1], (on ? 16 : 4) + k * (on ? 20 : 10), 0, Math.PI * 2); x.stroke(); }
       const bub = on ? Math.min(1, Math.max(0, (now - arriveT + 300) / 700)) : 0;
       if (bub > 0 && LOGO.complete && LOGO.naturalWidth) { const s = 22 * (.75 + .25 * bub), r = 4;
-        x.globalAlpha = al * bub; x.save(); x.shadowColor = 'rgba(255,79,23,.3)'; x.shadowBlur = 14;
-        x.beginPath(); x.roundRect ? x.roundRect(p[0] - s / 2, p[1] - s / 2, s, s, r) : x.rect(p[0] - s / 2, p[1] - s / 2, s, s); x.fillStyle = '#ff4f17'; x.fill(); x.restore();
+        x.globalAlpha = al * bub; x.save(); x.shadowColor = 'rgba(226,255,31,.3)'; x.shadowBlur = 14;
+        x.beginPath(); x.roundRect ? x.roundRect(p[0] - s / 2, p[1] - s / 2, s, s, r) : x.rect(p[0] - s / 2, p[1] - s / 2, s, s); x.fillStyle = '#E2FF1F'; x.fill(); x.restore();
         x.save(); x.beginPath(); x.roundRect ? x.roundRect(p[0] - s / 2, p[1] - s / 2, s, s, r) : x.rect(p[0] - s / 2, p[1] - s / 2, s, s); x.clip(); x.drawImage(LOGO, p[0] - s / 2, p[1] - s / 2, s, s); x.restore(); x.globalAlpha = 1; }
-      else { x.fillStyle = c.next ? `rgba(10,12,16,${al})` : `rgba(255,79,23,${al})`; x.beginPath(); x.arc(p[0], p[1], hv ? 4 : 3.2, 0, Math.PI * 2); x.fill();
-        if (c.next) { x.strokeStyle = `rgba(255,79,23,${al})`; x.lineWidth = 1.5; x.stroke(); } }
+      else { x.fillStyle = c.next ? `rgba(10,12,16,${al})` : `rgba(226,255,31,${al})`; x.beginPath(); x.arc(p[0], p[1], hv ? 4 : 3.2, 0, Math.PI * 2); x.fill();
+        if (c.next) { x.strokeStyle = `rgba(226,255,31,${al})`; x.lineWidth = 1.5; x.stroke(); } }
       if (on || hv || f < .5) { x.save(); x.font = on ? '500 14.5px Switzer, Helvetica, Arial, sans-serif' : '400 12.5px Switzer, Helvetica, Arial, sans-serif'; x.shadowColor = '#0a0c10'; x.shadowBlur = 10;
         x.fillStyle = `rgba(255,255,255,${((on || hv ? .96 : .7) * al).toFixed(3)})`; const tw2 = x.measureText(c.city).width, gapL = on ? 26 : 14, left = (c.left && !on) || p[0] + gapL + tw2 > W - 12, tx = left ? p[0] - gapL : p[0] + gapL;
         x.textAlign = left ? 'right' : 'left'; x.fillText(c.city, tx, p[1] + 4.5); x.restore(); }
@@ -466,7 +466,7 @@
         yaw += (gy - yaw) * .03; pitch += (gp - pitch) * .03; Z += (ZMAX - Z) * .03; }
     }
     const ti = hover >= 0 ? hover : (focus >= 0 && now >= arriveT + 250 ? focus : -1); if (ti !== tipI) { tipI = ti; showTip(ti); }
-    draw(now); requestAnimationFrame(loop);
+    tourTick(now); draw(now); requestAnimationFrame(loop);
   };
 
   const showTip = i => { if (!tip) return; if (i < 0) { tip.classList.remove('show'); return; } const c = CITIES[i];
@@ -490,23 +490,24 @@
   if (tip) { tip.addEventListener('pointerenter', () => { overTip = true; clearTimeout(hideT); hideT = 0; });
     tip.addEventListener('pointerleave', () => { overTip = false; hideT = setTimeout(() => { hideT = 0; if (!overTip) { hover = -1; } }, 350); }); }
 
-  /* on wide screens the scroll tells the story; the steps and the skip button move through it */
-  const story = $('#story');
-  const NC = CITIES.length, stepTop = i => story.offsetTop + (story.offsetHeight - innerHeight) * (i + .5) / NC;
-  const storyScroll = () => {
-    if (!wide() || !dots) return;
-    const r = story.getBoundingClientRect(), span = story.offsetHeight - innerHeight, p = Math.min(.9999, Math.max(0, -r.top / Math.max(1, span)));
-    const step = Math.min(NC - 1, Math.floor(p * NC)), fr = p * NC - step;
-    $$('.steps li').forEach((li, k) => { const b = $('button', li); k === step ? b.style.setProperty('--fill', (fr * 100).toFixed(1) + '%') : b.style.removeProperty('--fill'); });
-    const sk = $('.skip'); if (sk) sk.classList.toggle('show', r.top < innerHeight * .2 && r.bottom > innerHeight * .9);
-    if (step !== focus) goTo(step);
+  /* the tour plays by itself on wide screens; scrolling passes straight through it to the page below */
+  const story = $('#story'), NC = CITIES.length, DWELL = 6500;
+  let tourEl = 0, tourPrev = 0;
+  const tourTick = now => {
+    const dt = tourPrev ? Math.min(100, now - tourPrev) : 0; tourPrev = now;
+    if (!wide() || !dots || !story || RM) return;
+    const r = story.getBoundingClientRect(), seen = r.bottom > innerHeight * .4 && r.top < innerHeight * .5;
+    if (!seen || document.hidden || dragging || hover >= 0 || overTip || now - lastInteract < 9000) return;
+    tourEl += dt;
+    if (tourEl >= DWELL) { tourEl = 0; goTo((focus + 1) % NC); }
+    const b = $('.steps li.on button'); if (b) b.style.setProperty('--fill', (tourEl / DWELL * 100).toFixed(1) + '%');
   };
-  addEventListener('scroll', storyScroll, { passive: true });
-  window.__goto = i => { lastInteract = performance.now(); if (wide() && story) scrollTo({ top: stepTop(i), behavior: RM ? 'auto' : 'smooth' }); else { goTo(i); panel.scrollIntoView({ behavior: RM ? 'auto' : 'smooth', block: 'center' }); } };
-  $$('.steps li').forEach(li => $('button', li).addEventListener('click', () => { const i = +li.dataset.city; if (wide()) window.__goto(i); else { lastInteract = performance.now(); goTo(i); } }));
-  const skip = $('.skip');
-  if (skip) skip.addEventListener('click', () => scrollTo({ top: story.offsetTop + story.offsetHeight - 40, behavior: RM ? 'auto' : 'smooth' }));
+  const pick = i => { lastInteract = performance.now(); tourEl = 0; goTo(i); if (wide()) { const b = $('.steps li.on button'); if (b) b.style.setProperty('--fill', '100%'); } };
+  window.__goto = i => { pick(i); const r = story.getBoundingClientRect(); if (r.top < -innerHeight * .3 || r.top > innerHeight * .3) (wide() ? story : panel).scrollIntoView({ behavior: RM ? 'auto' : 'smooth', block: wide() ? 'start' : 'center' }); };
+  $$('.steps li').forEach(li => $('button', li).addEventListener('click', () => pick(+li.dataset.city)));
+  const skip = $('.skip'), below = $('#editions');
+  if (skip) { skip.classList.add('show'); if (below) skip.addEventListener('click', () => below.scrollIntoView({ behavior: RM ? 'auto' : 'smooth', block: 'start' })); }
   $$('.seg button').forEach(b => b.addEventListener('click', () => { if (layer !== b.dataset.layer) { layer = b.dataset.layer; layerT = performance.now(); } $$('.seg button').forEach(o => { o.classList.toggle('on', o === b); o.setAttribute('aria-pressed', o === b); }); }));
 
-  (async () => { await build(); goTo(0, 1); storyScroll(); tourAt = performance.now() + 5000; requestAnimationFrame(loop); })();
+  (async () => { await build(); goTo(0, 1); tourAt = performance.now() + 5000; requestAnimationFrame(loop); })();
 })();
