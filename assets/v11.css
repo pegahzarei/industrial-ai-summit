@@ -1482,3 +1482,10 @@ body.home main { padding-top: 0; }
 /* speaker portraits (Nov 18): every photo is pre-graded to the same black point, white point and face tone
    (assets/img/portraits-g, speakers-g), so one plain grayscale reads crisp and even; colour returns on hover */
 .people img, .people .pp img, .q figcaption img, .q .q-face, .sp-photo img { filter: grayscale(1); }
+
+/* yellow on the light paper (Nov 18): never as text, always as a solid block with ink on it, like the logo */
+.label .no { min-width: 0; margin-right: 10px; padding: 3px 5px 2px; border-radius: 2px; background: var(--o); color: var(--on-o); font-size: 11.5px; line-height: 1; vertical-align: 1px; }
+.r-num, .rec:hover .r-num, .rec-item.open .r-num { display: inline-block; margin-left: .45em; padding: 4px 5px 3px; border-radius: 2px; background: var(--o); color: var(--on-o); font-size: 12px; line-height: 1; vertical-align: super; }
+.r-city { background: linear-gradient(transparent 62%, var(--o) 62%, var(--o) 90%, transparent 90%) no-repeat 0 0 / 0 100%; transition: background-size .55s var(--ease), transform .5s var(--ease); }
+.rec:hover .r-city, .rec-item.open .r-city { background-size: 100% 100%; }
+.records .r-city { justify-self: start; }
