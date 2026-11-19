@@ -1041,14 +1041,14 @@ legend.wz-q { float: left; width: 100%; }
 .opt:has(input:checked) { border-color: var(--o-l); background: rgba(226,255,31,.04); }
 .opt:has(input:checked) .opt-k { background: var(--o); border-color: var(--o-l); }
 .wz-bar i { background: var(--o-l); }
-.hud-d { color: #ff9a70; }
+.hud-d { color: #EEFF8A; }
 .ed-nav a:hover .v { color: var(--o-t); }
 .chapters-list li:hover p, .wz-plan li:hover .t { color: var(--o-t); }
-.lang-m a:hover .ln-n { color: #ff9a70; }
+.lang-m a:hover .ln-n { color: #EEFF8A; }
 .more:hover { color: var(--o-t); }
 .pill:hover { background: var(--o); }
 .pill-light:hover { background: var(--o); color: var(--on-o); }
-.ch-a:hover { color: #ff9a70; }
+.ch-a:hover { color: #EEFF8A; }
 .skip:hover { background: var(--o); box-shadow: none; }
 .seg button.on { background: var(--o); color: var(--on-o); }
 @media (max-width: 900px) {

@@ -396,7 +396,7 @@
       bins[Math.min(5, (lv * 6) | 0)].rect(X - ds / 2, Y - ds / 2, ds, ds);
     }
     for (let b = 0; b < 6; b++) { x.fillStyle = `rgba(226,232,242,${(base * (.1 + b * .15)).toFixed(3)})`; x.fill(bins[b]); }
-    for (let k = 0; k < 3; k++) { x.fillStyle = `rgba(255,${236 - k * 12},${224 - k * 26},${((.5 + k * .17) * spot + (1 - spot) * .45).toFixed(3)})`; x.fill(lit[k]); }
+    for (let k = 0; k < 3; k++) { x.fillStyle = `rgba(${248 - k * 6},255,${214 - k * 44},${((.5 + k * .17) * spot + (1 - spot) * .45).toFixed(3)})`; x.fill(lit[k]); }
     /* industry: twinkling plants; around the focused city they come up as the camera arrives; switching the layer on sends a ripple out */
     const fc = focus >= 0 ? CITIES[focus] : null, arr = Math.max(0, Math.min(1, (now - arriveT) / 1000)), rip = Math.min(1, (now - layerT) / 1600);
     const tw = [new Path2D(), new Path2D(), new Path2D()];
