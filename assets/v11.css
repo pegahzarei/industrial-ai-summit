@@ -1484,9 +1484,15 @@ body.home main { padding-top: 0; }
 .people img, .people .pp img, .q figcaption img, .q .q-face, .sp-photo img { filter: grayscale(1); }
 
 /* yellow on the light paper (Nov 18): never as text, always as a solid block with ink on it, like the logo */
-.r-city { background: linear-gradient(transparent 62%, var(--o) 62%, var(--o) 90%, transparent 90%) no-repeat 0 0 / 0 100%; transition: background-size .55s var(--ease), transform .5s var(--ease); }
-.rec:hover .r-city, .rec-item.open .r-city { background-size: 100% 100%; }
 .records .r-city { justify-self: start; }
-/* the venue carries the yellow (Nov 19): a solid block with ink on it; the numbers stay quiet grey */
-.records .r-meta > span:last-child { align-self: flex-start; width: fit-content; margin-top: 4px; padding: 4px 8px 3px; border-radius: 2px; background: var(--o); color: var(--on-o); }
-.rec:hover .r-meta > span:last-child { color: var(--on-o); }
+/* the city carries the yellow (Nov 19): a band under the name at rest that grows into the full marker on hover;
+   the venue stays plain and takes a small underline on hover */
+.records .r-city {
+  background:
+    linear-gradient(transparent 62%, var(--o) 62%, var(--o) 90%, transparent 90%) no-repeat 0 0 / 0 100%,
+    linear-gradient(transparent 80%, var(--o) 80%, var(--o) 90%, transparent 90%) no-repeat 0 0 / 100% 100%;
+  transition: background-size .55s var(--ease), transform .5s var(--ease);
+}
+.rec:hover .r-city, .rec-item.open .r-city { background-size: 100% 100%, 100% 100%; }
+.records .r-meta > span:last-child { align-self: flex-start; background: linear-gradient(var(--o), var(--o)) no-repeat 0 100% / 0 3px; padding-bottom: 2px; transition: background-size .45s var(--ease) .1s, color .4s; }
+.rec:hover .r-meta > span:last-child, .rec-item.open .r-meta > span:last-child { background-size: 100% 3px; }
